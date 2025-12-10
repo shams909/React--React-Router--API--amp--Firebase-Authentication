@@ -1,0 +1,284 @@
+/* Global Auth Page Reset */
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #000000;
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(212, 165, 116, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(139, 111, 71, 0.05) 0%, transparent 40%);
+    position: relative;
+}
+
+/* Container & Card - Organizing the content */
+.auth-container {
+    width: 100%;
+    max-width: 460px;
+    position: relative;
+    z-index: 10;
+}
+
+.auth-card {
+    background: rgba(10, 10, 10, 0.6);
+    /* Very dark, almost black glass */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 165, 116, 0.15);
+    /* Subtle gold border */
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    box-shadow:
+        0 25px 50px -12px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(0, 0, 0, 0.5);
+    /* Deep shadow for depth */
+}
+
+/* Typography */
+.auth-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.75rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 0 0 0.75rem 0;
+    color: #ffffff;
+    background: linear-gradient(135deg, #d4a574 0%, #e6c9a8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+}
+
+.auth-subtitle {
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+}
+
+/* Form Styles */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    color: #d4a574;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-left: 0.25rem;
+    letter-spacing: 0.02em;
+}
+
+/* INPUT WRAPPER - The key to fixing the white box look */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    /* Extremely subtle light background */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.input-wrapper:focus-within {
+    border-color: #d4a574;
+    background: rgba(212, 165, 116, 0.05);
+    box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.05);
+    /* Glow effect */
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 1.1rem;
+    pointer-events: none;
+    transition: color 0.3s ease;
+}
+
+.input-wrapper:focus-within .input-icon {
+    color: #d4a574;
+}
+
+/* The Input Field Itself - OVERRIDING DEFAULTS */
+.input-wrapper input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    /* Left padding for icon */
+    background: transparent !important;
+    border: none !important;
+    color: #ffffff !important;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+}
+
+.input-wrapper input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* FIX BROWSER AUTOFILL - The "White Box" Killer */
+.input-wrapper input:-webkit-autofill,
+.input-wrapper input:-webkit-autofill:hover,
+.input-wrapper input:-webkit-autofill:focus,
+.input-wrapper input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #1a1a1a inset !important;
+    /* Force dark background */
+    -webkit-text-fill-color: #ffffff !important;
+    /* Force white text */
+    transition: background-color 5000s ease-in-out 0s;
+    caret-color: white;
+}
+
+/* Password Toggle */
+.toggle-password {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: #ffffff;
+}
+
+/* Buttons */
+.auth-btn {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    letter-spacing: 0.02em;
+}
+
+.auth-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Primary "Sign In" Button */
+.auth-btn.primary {
+    background: linear-gradient(135deg, #d4a574 0%, #8b6f47 100%);
+    color: #000000;
+    border: none;
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 15px rgba(212, 165, 116, 0.3);
+    font-weight: 700;
+}
+
+.auth-btn.primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 165, 116, 0.4);
+}
+
+/* Social Buttons - Fixing the "White Button" look */
+.auth-btn.social {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border-radius: 50px;
+    /* Fully rounded pill shape */
+    justify-content: center;
+}
+
+.auth-btn.social:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Divider */
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.divider span {
+    padding: 0 1rem;
+}
+
+/* Footer */
+.auth-footer {
+    margin-top: 2rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.95rem;
+}
+
+.auth-footer a {
+    color: #d4a574;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 0.25rem;
+    transition: color 0.3s ease;
+}
+
+.auth-footer a:hover {
+    color: #e6c9a8;
+    text-decoration: underline;
+}
+
+/* Error Alert */
+.error-alert {
+    background: rgba(185, 28, 28, 0.15);
+    border: 1px solid rgba(185, 28, 28, 0.3);
+    color: #fca5a5;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Mobile Responsive */
+@media (max-width: 640px) {
+    .auth-page {
+        padding: 1rem;
+    }
+
+    .auth-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .auth-title {
+        font-size: 2.25rem;
+    }
+}
